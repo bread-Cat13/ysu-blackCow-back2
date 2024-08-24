@@ -3,11 +3,12 @@ package blackCow.project.repository;
 
 import blackCow.project.domain.Building;
 import blackCow.project.domain.FloorInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
-
+@Slf4j
 @Repository
 public class MemoryBuildingRepository implements BuildingRepository{
     private static final Map<Integer, Building> buildingFloorMap = new HashMap<>();
@@ -30,6 +31,10 @@ public class MemoryBuildingRepository implements BuildingRepository{
                 floorNumber = Integer.parseInt(floor.substring(1));
                 return floorNumber <= (-1*getFloorInfo(buildingId).getMinFloor()) && floorNumber > 0;
             } else {
+                if(floor.toLowerCase().endsWith("f")){
+                    floor = floor.substring(0, floor.length()-1);
+                }
+                log.info("Requested floor = {}", floor);
                 floorNumber = Integer.parseInt(floor);
                 return floorNumber <= getFloorInfo(buildingId).getMaxFloor();
             }
