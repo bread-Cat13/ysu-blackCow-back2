@@ -18,23 +18,13 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 @Configuration
 @ComponentScan
 public class AppConfig {
-//    @Value("${cloud.aws.s3.endpoint}")
-//    private String s3Endpoint;
-//
-//    @Value("${cloud.aws.region}")
-//    private String region;
+
 
     @Bean
     public AmazonS3 amazonS3(){
-//        return AmazonS3ClientBuilder.standard()
-//                .withRegion(Regions.AP_SOUTH_1) // 필요한 AWS 리전으로 설정
-//                .withCredentials(new AWSStaticCredentialsProvider(
-//                        new BasicAWSCredentials("your-access-key", "your-secret-key")))
-//                .build();
 
-        //cloud9에서
         return AmazonS3ClientBuilder.standard()
-                .withRegion(Regions.AP_SOUTH_1) // 본인의 리전으로 설정
+                .withRegion(Regions.AP_SOUTH_1)
                 .build();
     }
 
